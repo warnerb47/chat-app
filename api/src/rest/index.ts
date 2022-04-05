@@ -1,4 +1,5 @@
 import express, { Application, json } from 'express';
+import { envKeys } from '../interfaces';
 import { router } from './routes';
 
 const app: Application = express();
@@ -11,7 +12,7 @@ app.get('', (req, res) =>{
 })
 
 export function startServer() {
-    app.listen(3000, () => {
-        console.log('rest api avaible on: http://localhost:3000');
+    app.listen(process.env[envKeys.PORT], () => {
+        console.log('rest api avaible on: http://localhost:' + process.env[envKeys.PORT]);
     });    
 }

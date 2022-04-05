@@ -29,7 +29,6 @@ userRouter.get('/:id', authenticateToken, async (req, res) => {
 });
 
 userRouter.post('/login', async (req, res) => {
-    // console.log(req.body);
     try {
         if (req.body) {
             const data = await login(req.body);
