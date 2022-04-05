@@ -8,4 +8,6 @@ export interface IUser {
     connected: boolean;
     friends: Array<string>;
     discussions: Array<string>;
+    created_at?: Date;
+    updated_at?: Date;
 }
