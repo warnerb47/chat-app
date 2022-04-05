@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { startServer } from './rest';
+import { startServer } from './api';
 import { connectDB } from './config/mongoConfig';
 
 connectDB();

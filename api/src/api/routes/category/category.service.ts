@@ -1,5 +1,5 @@
 import { ICategory } from '../../../interfaces';
-import { categoryModel } from './../../../models'
+import { categoryModel } from '../../../models'
 
 export const getCategories = async () => {
     try {

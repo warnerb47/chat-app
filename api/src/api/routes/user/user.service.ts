@@ -1,6 +1,6 @@
 import { IUser } from '../../../interfaces';
 import { generateAccessToken } from '../token/token.service';
-import { userModel } from './../../../models'
+import { userModel } from '../../../models'
 
 export const getUsers = async () => {
     try {

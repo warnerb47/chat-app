@@ -1,5 +1,5 @@
 import { IArticle } from '../../../interfaces';
-import { articleModel } from './../../../models'
+import { articleModel } from '../../../models'
 
 export const getArticles = async () => {
     try {

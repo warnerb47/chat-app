@@ -1,19 +1,12 @@
 import { Router } from 'express';
-import { authenticateToken } from './../token/token.service';
-import {
-    deleteArticle,
-    getArticleById,
-    getArticleByTitle,
-    getArticles,
-    postArticle,
-    updateArticle,
-} from './article.service';
+import { authenticateToken } from '../token/token.service';
+import { deleteUser, getUser, getUsers, login, postUser, updateUser } from './user.service';
 
-export const articleRouter: Router = Router();
+export const userRouter: Router = Router();
 
-articleRouter.get('/', async (req, res) => {
+userRouter.get('/', authenticateToken, async (req, res) => {
     try {
-        const data = await getArticles();
+        const data = await getUsers();
         res.status(200).send({data});
     } catch (error) {
         console.log(error);
@@ -21,10 +14,10 @@ articleRouter.get('/', async (req, res) => {
     }
 });
 
-articleRouter.get('/:id', async (req, res) => {
+userRouter.get('/:id', authenticateToken, async (req, res) => {
     try {
         if (req.params.id) {
-            const data = await getArticleById(req.params.id);
+            const data = await getUser(req.params.id);
             res.status(200).send({data});
         }else{
             res.sendStatus(400);
@@ -35,27 +28,27 @@ articleRouter.get('/:id', async (req, res) => {
     }
 });
 
-articleRouter.get('/title/:title', async (req, res) => {
+userRouter.post('/login', async (req, res) => {
     try {
-        if (req.params.title) {
-            const data = await getArticleByTitle(req.params.title);
-            res.status(200).send({data});
+        if (req.body) {
+            const data = await login(req.body);
+            res.send({data});
         }else{
             res.sendStatus(400);
-        }   
+        }
     } catch (error) {
         console.log(error);
-        res.sendStatus(500);     
+        res.sendStatus(500);
     }
 });
 
-articleRouter.post('/', async (req, res) => {
+userRouter.post('/', async (req, res) => {
     try {
 
         if (req.body) {
-            const data = await postArticle(req.body);
+            const data = await postUser(req.body);
             res.send({data});
-        }else{
+        }else{  
             res.sendStatus(400);
         }        
     } catch (error) {
@@ -64,11 +57,11 @@ articleRouter.post('/', async (req, res) => {
     }
 });
 
-articleRouter.patch('/:id', authenticateToken, async (req, res) => {
+userRouter.patch('/:id', authenticateToken, async (req, res) => {
     try {
         if (req.params.id && req.body) {
-            const data = updateArticle(req.body, req.params.id);
-            res.send({data});
+            const data = updateUser(req.body, req.params.id);
+            res.send({data: 'utilisateur modifier'});
         }else{
             res.sendStatus(400);
         }        
@@ -79,11 +72,11 @@ articleRouter.patch('/:id', authenticateToken, async (req, res) => {
     }
 });
 
-articleRouter.delete('/:id', authenticateToken, async (req, res) => {
+userRouter.delete('/:id', authenticateToken, async (req, res) => {
     try {
         if (req.params.id) {
-            const data = deleteArticle(req.params.id);
-            res.send({data});
+            const data = deleteUser(req.params.id);
+            res.send({data: 'utilisateur supprimé'});
         }else{
             res.sendStatus(400);
         }
