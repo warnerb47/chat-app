@@ -11,6 +11,7 @@ export interface IUser {
     discussions: Array<string>;
     created_at?: Date;
     updated_at?: Date;
+    salt?: string;
 }
 
 
