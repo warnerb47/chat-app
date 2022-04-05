@@ -2,9 +2,9 @@ import { IUser } from '../../../interfaces';
 import { generateAccessToken } from '../token/token.service';
 import { userModel } from '../../../models'
 
-export const getUsers = async () => {
+export const getUsers = async (filer?: any) => {
     try {
-        return await userModel.find();
+        return await userModel.find(filer || {});
     } catch (error) {
         console.log(error);
         return [];
@@ -55,7 +55,7 @@ export const deleteUser = async (id: string) => {
 export const login = async (payload: IUser): Promise<string> => {
     try {
         if (payload) {
-            const found = await userModel.findOne({login: payload.login, password: payload.password });
+            const found = await userModel.findOne({login: payload.telephone, password: payload.password });
             if (found) {
                 const token = generateAccessToken(payload);
                 return token;

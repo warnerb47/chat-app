@@ -52,14 +52,20 @@ userRouter.post('/register', upload.single('image'), async (req, res) => {
             if (req.file) {
                 payload.image = getFileUrl(req.file);  
             }
-            const data = await postUser(payload);
-            res.send(data);
-        }else{  
-            res.sendStatus(400);
+            const exist = await getUsers({ telephone: payload.telephone });
+            console.log(exist);
+            if (exist.length <= 0) {
+                const data = await postUser(payload);
+                res.send(data);  
+            } else if (exist.length > 0) {
+                res.send('user already exist');
+            }
+        }else{
+            res.send('payload invalid');
         }
     } catch (error) {
         console.log(error);
-        res.sendStatus(500);
+        res.send(error);
     }
 });
 

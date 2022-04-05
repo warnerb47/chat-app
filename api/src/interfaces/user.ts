@@ -1,7 +1,8 @@
 export interface IUser {
     _id?: string;
+    telephone: string;
     fullName?: string;
-    login: string;
+    // login: string;
     password: string;
     image?: string;
     description: string;
@@ -15,21 +16,22 @@ export interface IUser {
 
 export const defaultUser: IUser = {
     fullName: '',
-    login: '',
+    // login: '',
     password: '',
     description: '',
     connected: false,
     friends: [],
     discussions: [],
+    telephone: "",
 }
 
 // {
 //     "fullName": "h",
-//     "login": "h",
 //     "password": "h",
 //     "description": "h",
 //     "connected": true,
 //     "friends": [],
 //     "discussions": [],
+//     "telephone": "777494817",
 //     "image": "http://localhost:3000/static/35731649-652807e8-080e-11e8-88fd-1b2f6d553b2d.png"
 // }

@@ -4,7 +4,8 @@ import { IUser } from '../interfaces';
 export const userSchema: Schema = new Schema<IUser>(
     {
         fullName: { type: String, default:'indisponible'},
-        login: { type: String, required: true },
+        telephone: { type: String, required: true },
+        // login: { type: String, required: true },
         password: { type: String, required: true },
         connected: { type: Boolean, default: false },
         description: { type: String},
