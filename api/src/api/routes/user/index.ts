@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { upload } from '../../../config/multerConfig';
 import { authenticateToken } from '../token/token.service';
 import { deleteUser, getUser, getUsers, login, postUser, updateUser } from './user.service';
 
@@ -42,15 +43,17 @@ userRouter.post('/login', async (req, res) => {
     }
 });
 
-userRouter.post('/', async (req, res) => {
+userRouter.post('/register', upload.single('image'), async (req, res) => {
     try {
-
-        if (req.body) {
-            const data = await postUser(req.body);
-            res.send({data});
-        }else{  
-            res.sendStatus(400);
-        }        
+        console.log(req.file);
+        console.log(req.body);
+        res.send('en construction');
+        // if (req.body) {
+        //     const data = await postUser(req.body);
+        //     res.send({data});
+        // }else{  
+        //     res.sendStatus(400);
+        // }
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
