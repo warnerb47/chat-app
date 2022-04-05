@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { upload } from '../../../config/multerConfig';
+import { IUser } from '../../../interfaces';
 import { authenticateToken } from '../token/token.service';
+import { getFileUrl } from '../utils';
 import { deleteUser, getUser, getUsers, login, postUser, updateUser } from './user.service';
 
 export const userRouter: Router = Router();
@@ -45,15 +47,16 @@ userRouter.post('/login', async (req, res) => {
 
 userRouter.post('/register', upload.single('image'), async (req, res) => {
     try {
-        console.log(req.file);
-        console.log(req.body);
-        res.send('en construction');
-        // if (req.body) {
-        //     const data = await postUser(req.body);
-        //     res.send({data});
-        // }else{  
-        //     res.sendStatus(400);
-        // }
+        const payload: IUser = JSON.parse(req.body?.payload);
+        if (payload) {
+            if (req.file) {
+                payload.image = getFileUrl(req.file);  
+            }
+            const data = await postUser(payload);
+            res.send(data);
+        }else{  
+            res.sendStatus(400);
+        }
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
