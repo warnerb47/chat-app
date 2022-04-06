@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" [routerLink]="['/nav/chat']">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-buttons>
     <ion-title>Luke Skywalker<br><div class="status">En ligne</div></ion-title>
@@ -15,7 +15,7 @@
 <ion-content>
   <div class="bg">
     <ion-item lines="none">
-      <ion-badge color="warning" slot="end">Hey Luke comment ça va ?! <ion-note color="medium">21:16 <ion-icon name="checkmark-done"></ion-icon></ion-note></ion-badge>
+      <ion-badge color="primary" slot="end">Hey Luke comment ça va ?! <ion-note color="light">21:16 <ion-icon name="checkmark-done"></ion-icon></ion-note></ion-badge>
     </ion-item>
     
     <ion-item lines="none">
@@ -28,9 +28,10 @@
           <ion-icon name="share"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="top">
-          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
-          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
-          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+          <ion-fab-button><ion-icon name="document-outline"></ion-icon></ion-fab-button>
+          <ion-fab-button><ion-icon name="play-circle-outline"></ion-icon></ion-fab-button>
+          <ion-fab-button><ion-icon name="mic-outline"></ion-icon></ion-fab-button>
+          <ion-fab-button><ion-icon name="camera-outline"></ion-icon></ion-fab-button>
         </ion-fab-list>
       </ion-fab>
  </ion-content>
