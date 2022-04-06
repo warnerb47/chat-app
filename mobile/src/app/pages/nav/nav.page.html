@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>nav</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs>
 
-<ion-content>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="chat">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Accueil</ion-label>
+    </ion-tab-button>
 
-</ion-content>
+    <ion-tab-button tab="network">
+      <ion-icon name="people-outline"></ion-icon>
+      <ion-label>Mon réseau</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="setting">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>paramétre</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>
