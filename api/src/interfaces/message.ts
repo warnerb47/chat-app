@@ -2,6 +2,7 @@ export enum contentType {
   IMAGE = 'IMAGE',
   VIDEO = 'VIDEO',
   AUDIO = 'AUDIO',
+  DOC = 'DOC',
 }
 
 export interface IMedia{

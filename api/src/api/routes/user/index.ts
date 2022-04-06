@@ -13,7 +13,7 @@ userRouter.get('/', authenticateToken, async (req, res) => {
         res.status(200).send(data);
     } catch (error) {
         console.log(error);
-        res.sendStatus(500);
+        res.send(error);
     }
 });
 
@@ -23,11 +23,11 @@ userRouter.get('/:id', authenticateToken, async (req, res) => {
             const data = await getUser(req.params.id);
             res.status(200).send(data);
         }else{
-            res.sendStatus(400);
+            res.send('payload invalid');
         }   
     } catch (error) {
         console.log(error);
-        res.sendStatus(500);     
+        res.send(error);     
     }
 });
 
@@ -72,14 +72,14 @@ userRouter.post('/register', upload.single('image'), async (req, res) => {
 userRouter.patch('/:id', authenticateToken, async (req, res) => {
     try {
         if (req.params.id && req.body) {
-            const data = updateUser(req.body, req.params.id);
-            res.send({data: 'utilisateur modifier'});
+            const data = await updateUser(req.body, req.params.id);
+            res.send(data);
         }else{
-            res.sendStatus(400);
+            res.send('payload invalid');
         }        
     } catch (error) {
         console.log(error);
-        res.sendStatus(500);
+        res.send(error);
         
     }
 });
@@ -87,15 +87,14 @@ userRouter.patch('/:id', authenticateToken, async (req, res) => {
 userRouter.delete('/:id', authenticateToken, async (req, res) => {
     try {
         if (req.params.id) {
-            const data = deleteUser(req.params.id);
-            res.send({data: 'utilisateur supprimé'});
+            const data = await deleteUser(req.params.id);
+            res.send(data);
         }else{
-            res.sendStatus(400);
+            res.send('payload invalid');
         }
         
     } catch (error) {
         console.log(error);
-        res.sendStatus(500);
-        
+        res.send(error);
     }
 });
