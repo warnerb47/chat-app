@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <img src="assets/logo.webp" alt="logo" class="logo">
+
+  <form>
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Telephone</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Mot de passe</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-card-content>
+      <ion-row>
+        <ion-button color="primary" (click)="login()">se connecter</ion-button>
+      </ion-row>
+    </ion-card>
+  </form>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button  [routerLink]="['/register']" >
+      <ion-icon name="person-add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content> 
