@@ -35,13 +35,13 @@ userRouter.post('/login', async (req, res) => {
     try {
         if (req.body) {
             const data = await login(req.body);
-            res.send({data});
+            res.send(data);
         }else{
-            res.sendStatus(400);
+            res.send('data is invalid');
         }
     } catch (error) {
         console.log(error);
-        res.sendStatus(500);
+        res.send(error);
     }
 });
 

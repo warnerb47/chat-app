@@ -25,6 +25,7 @@ export const userSchema: Schema = new Schema<IUser>(
     {timestamps: true},
 );
 
+// hash password before saving
 userSchema.pre('save', function(next: any){
     var user = this;
         user.updated_at = Date.now;

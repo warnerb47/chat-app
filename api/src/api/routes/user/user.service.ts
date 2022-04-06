@@ -1,6 +1,7 @@
 import { IUser } from '../../../interfaces';
 import { generateAccessToken } from '../token/token.service';
 import { userModel } from '../../../models'
+import bcrypt from 'bcrypt';
 
 export const getUsers = async (filer?: any) => {
     try {
@@ -55,12 +56,20 @@ export const deleteUser = async (id: string) => {
 export const login = async (payload: IUser): Promise<string> => {
     try {
         if (payload) {
-            const found = await userModel.findOne({login: payload.telephone, password: payload.password });
+            const found = await userModel.findOne({telephone: payload.telephone });
             if (found) {
-                const token = generateAccessToken(payload);
-                return token;
+                const hashPassword = await bcrypt.hash(payload.password, found.salt || '')
+                // const match = await bcrypt.compare(found.password, hashPassword)
+                // console.log(found.password === hashPassword);
+                // console.log(match);
+                if (found.password === hashPassword) {
+                    const token = generateAccessToken(payload);
+                    return token;   
+                }else{
+                    return "password don't match";
+                }
             } else {
-                return "cet utilisateur est introuvable";
+                return "user not found";
             }
         } else {
             return "format invalide";
