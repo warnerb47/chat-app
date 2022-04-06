@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title>Luke Skywalker<br><div class="status">En ligne</div></ion-title>
+    <ion-avatar slot="end">
+      <img src="../../assets/avatar-luke.jpeg">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <div class="bg">
+    <ion-item lines="none">
+      <ion-badge color="warning" slot="end">Hey Luke comment ça va ?! <ion-note color="medium">21:16 <ion-icon name="checkmark-done"></ion-icon></ion-note></ion-badge>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-badge color="light" slot="start">Plutôt bien merci <ion-note color="medium">21:17</ion-note></ion-badge>
+    </ion-item>
+  </div>
+      <!-- fab placed in the center of the content with a list on each side -->
+      <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="share"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+ </ion-content>
+
+ <ion-footer>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-button fill="outline" shape="round" size="small">
+        <ion-icon slot="icon-only" name="arrow-up"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-input placeholder="Votre message"></ion-input>
+    <ion-buttons slot="end">
+      <ion-button >
+        <ion-icon color="primary" name="send-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-footer>

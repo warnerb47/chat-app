@@ -1,9 +1,59 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>setting</ion-title>
+  <ion-toolbar color="primary" >
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/login']" >
+        <ion-icon name="arrow-back-outline" size="large" color="light"></ion-icon> 
+      </ion-button>
+    </ion-buttons> 
+    <ion-title>Mon profil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <form>
+      <input type="file" #productImage accept="image/*"  (change)="changeListener($event)" name="cateagorieImage" class="productImageInput" >
+        <!-- <ion-input type="file" accept="image/*" id="upload" [(ngModel)]="imageFilePath" name="cateagorieImage" class="productImageInput" (ionChange)="changeListener($event)"></ion-input> -->
+      <div class="pickImage" (click)="this.pickImage()" >
+        <img id="selectedImage" *ngIf="this.imageFilePath" [src]="this.imageFilePath" alt="picked">
+        <ion-icon color="primary" *ngIf="!this.imageFilePath" name="image"></ion-icon>
+      </div>
+      <div class="textInput">
+        <ion-item>
+          <ion-label position="floating">Nom complet</ion-label>
+          <ion-input name="productName" ></ion-input>
+        </ion-item>
+      </div>
+      <div class="textInput">
+        <ion-item>
+          <ion-label position="floating">Telephone</ion-label>
+          <ion-input name="productName" ></ion-input>
+        </ion-item>
+      </div>
+      <div class="textInput">
+        <ion-item>
+          <ion-label position="floating">Mot de passe</ion-label>
+          <ion-input name="productName" ></ion-input>
+        </ion-item>
+      </div>
+      <div class="textInput">
+        <ion-item>
+          <ion-label position="floating">Confirmer Mot de passe</ion-label>
+          <ion-input name="productName" ></ion-input>
+        </ion-item>
+      </div>
+      <div class="btns">
+        <ion-button  [routerLink]="['/login']" color="medium" shape="round">
+          annuler
+        </ion-button>
+        <ion-button
+          (click)="this.submit()"
+          shape="round"
+          color="primary"        
+        >
+          valider
+        </ion-button>
+      </div>
+    </form>
+  </ion-card>
 </ion-content>
