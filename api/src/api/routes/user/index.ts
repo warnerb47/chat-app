@@ -10,7 +10,7 @@ export const userRouter: Router = Router();
 userRouter.get('/', authenticateToken, async (req, res) => {
     try {
         const data = await getUsers();
-        res.status(200).send({data});
+        res.status(200).send(data);
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
@@ -21,7 +21,7 @@ userRouter.get('/:id', authenticateToken, async (req, res) => {
     try {
         if (req.params.id) {
             const data = await getUser(req.params.id);
-            res.status(200).send({data});
+            res.status(200).send(data);
         }else{
             res.sendStatus(400);
         }   

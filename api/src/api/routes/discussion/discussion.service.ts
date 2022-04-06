@@ -1,9 +1,24 @@
-import { IDiscussion } from '../../../interfaces';
+import { IDiscussion, IUser } from '../../../interfaces';
+import { IDiscussionPopulated } from '../../../interfaces/discussion';
 import { discussionModel } from '../../../models'
 
-export const getCategories = async (filer?: any) => {
+export const getDiscussions = async (filer?: any) => {
     try {
         return await discussionModel.find(filer || {});
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
+
+export const getUsersDiscussions = async (idUser: string) => {
+    try {
+        const discussionList: Array<IDiscussionPopulated> = (await discussionModel.find()
+        .populate('users')
+        .populate('messages')) as Array<IDiscussionPopulated>;
+        const result = discussionList
+        .filter(discussion => discussion.users.some(user => user._id == idUser));
+        return result;
     } catch (error) {
         console.log(error);
         return [];

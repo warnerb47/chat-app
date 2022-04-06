@@ -2,7 +2,6 @@ export interface IUser {
     _id?: string;
     telephone: string;
     fullName?: string;
-    // login: string;
     password: string;
     image?: string;
     description: string;
@@ -17,7 +16,6 @@ export interface IUser {
 
 export const defaultUser: IUser = {
     fullName: '',
-    // login: '',
     password: '',
     description: '',
     connected: false,
