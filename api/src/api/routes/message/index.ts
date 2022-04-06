@@ -1,5 +1,9 @@
 import { Router } from 'express';
+import { upload } from '../../../config/multerConfig';
+import { IMessage } from '../../../interfaces';
+import { defaultMessage, getMessageFromPayload, IMessagePayload } from '../../../interfaces/message';
 import { authenticateToken } from '../token/token.service';
+import { getFileUrl } from '../utils';
 import {
     deleteMessage,
     getMessageById,
@@ -9,7 +13,7 @@ import {
 
 export const messageRouter: Router = Router();
 
-messageRouter.get('/:id', async (req, res) => {
+messageRouter.get('/:id',authenticateToken, async (req, res) => {
     try {
         if (req.params.id) {
             const data = await getMessageById(req.params.id);
@@ -23,18 +27,21 @@ messageRouter.get('/:id', async (req, res) => {
     }
 });
 
-messageRouter.post('/', async (req, res) => {
+messageRouter.post('/',authenticateToken, upload.single('image'), async (req, res) => {
     try {
-
-        if (req.body) {
-            const data = await postMessage(req.body);
+        const payload: IMessagePayload = JSON.parse(req.body?.payload);
+        if (payload && payload.discussion) {
+            if (req.file) {
+                payload.media.link = getFileUrl(req.file);  
+            }
+            const data = await postMessage(getMessageFromPayload(payload), payload.discussion);
             res.send(data);
         }else{
-            res.sendStatus(400);
-        }        
+            res.send('payload is not valid');
+        }
     } catch (error) {
         console.log(error);
-        res.sendStatus(500);
+        res.send(error);
     }
 });
 

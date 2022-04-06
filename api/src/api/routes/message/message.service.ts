@@ -1,5 +1,6 @@
-import { IMessage } from '../../../interfaces';
-import { messageModel } from '../../../models'
+import { IDiscussion, IMessage } from '../../../interfaces';
+import { discussionModel, messageModel } from '../../../models'
+import { updateDiscussion } from '../discussion/discussion.service';
 
 export const getMessages = async (filer?: any) => {
     try {
@@ -24,10 +25,17 @@ export const getMessageById = async (idMessage: string) => {
     }
 };
 
-export const postMessage = async (payload: IMessage) => {
+export const postMessage = async (payload: IMessage, IdDiscussion: string) => {
     try {
-        const Message = new messageModel(payload);
-        return await Message.save();
+        const discussion = await discussionModel.findById(IdDiscussion);
+        console.log(IdDiscussion);
+        if (discussion) {
+            const message = new messageModel(payload);
+            discussion?.messages.push(message?._id || '');
+            await updateDiscussion(discussion as IDiscussion, IdDiscussion);
+            await message.save();
+            return message;
+        }
     } catch (error) {
         console.log(error);
         return null;
