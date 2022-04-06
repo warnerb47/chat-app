@@ -1,0 +1,61 @@
+ion-toolbar{
+    text-align: center;
+}
+
+ion-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        div{
+            margin-top: 3vh;
+            padding: 3vw;
+        }
+        ion-button{
+            margin-top: 3vh;
+            margin-bottom: 1vh;
+        }
+        .pickImage{
+            // border: 1px solid #a70f6c;
+            box-shadow: 5px 5px 30px grey;
+            height: 20vh;
+            width: 40vw;
+            border-radius: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            img{
+                width: 40vw;
+                height: 20vh;
+                object-fit: contain;
+            }
+        }
+        .textInput{
+            font-size: larger;
+            font-weight: bolder;
+            text-align: center;
+            width: 100%;
+        }
+        .productImageInput{
+            display: none;
+        }
+
+        .btns{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+.hint{
+    color: red;
+}
