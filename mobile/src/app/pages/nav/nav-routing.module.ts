@@ -28,11 +28,6 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: '',
-    redirectTo: '/nav/chat',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({

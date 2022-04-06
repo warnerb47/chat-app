@@ -43,15 +43,12 @@
         </ion-item>
       </div>
       <div class="btns">
-        <ion-button  [routerLink]="['/login']" color="medium" shape="round">
-          annuler
-        </ion-button>
         <ion-button
-          (click)="this.submit()"
+          [routerLink]="['/login']"
           shape="round"
           color="primary"        
         >
-          valider
+          se déconnecter
         </ion-button>
       </div>
     </form>
